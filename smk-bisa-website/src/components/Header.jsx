@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useScrollEffect from "../hooks/useScrollEffect";
 import { Menu, X } from "lucide-react";
-import logo from "../../public/photo.jpg"; // Make sure your logo path is correct
+import logo from "../assets/logo.jpg"; // Make sure your logo path is correct
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
