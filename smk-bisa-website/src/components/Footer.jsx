@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Youtube } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -20,10 +20,10 @@ const Footer = () => {
                 <span className="text-white font-bold">TT</span>
               </div>
               <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors cursor-pointer">
-                <span className="text-white font-bold">IG</span>
+                <span className="text-white font-bold"><Instagram /></span>
               </div>
               <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors cursor-pointer">
-                <span className="text-white font-bold">YT</span>
+                <span className="text-white font-bold"><Youtube /></span>
               </div>
             </div>
           </div>
@@ -47,8 +47,8 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4 text-orange-500">Kontak</h3>
             <div className="space-y-3">
               <div className="flex items-center">
-                <MapPin className="text-orange-500 mr-3" size={20} />
-                <span className="text-gray-400">Jl. Contoh No. 123, Bandung, Jawa Barat</span>
+                <MapPin className="text-orange-500 mr-3" size={40} />
+                <span className="text-gray-400">Jl. Melong Cijerah VI No. 5, Kecamatan Bandung Kulon, Kota Bandung</span>
               </div>
               <div className="flex items-center">
                 <Phone className="text-orange-500 mr-3" size={20} />
@@ -56,7 +56,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center">
                 <Mail className="text-orange-500 mr-3" size={20} />
-                <a href="mailto:info@smkbisa.com" className="text-gray-400 hover:text-orange-500 transition-colors">info@smkbisa.com</a>
+                <a href="mailto:smkbisa@gmail.com" className="text-gray-400 hover:text-orange-500 transition-colors">smkbisa@gmail.com</a>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@ const Footer = () => {
 
         <div className="border-t border-orange-500/20 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            &copy; 2024 SMK Bisa Corp. All rights reserved. | 
+            &copy; 2025 SMK Bisa Corp. All rights reserved. | 
             <a href="#" className="text-orange-500 hover:text-orange-400 ml-2">Kebijakan Privasi</a>
           </p>
         </div>

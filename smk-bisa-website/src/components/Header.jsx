@@ -1,10 +1,30 @@
 import React, { useState, useEffect } from "react";
 import useScrollEffect from "../hooks/useScrollEffect";
 import { Menu, X } from "lucide-react";
+import logo from "../../public/photo.jpg"; // Make sure your logo path is correct
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const isScrolled = useScrollEffect();
+
+	// Close the menu if the user resizes the window to desktop
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth >= 768) {
+				setIsMenuOpen(false);
+			}
+		};
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	// Lock scroll on body when menu is open
+	useEffect(() => {
+		document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+		return () => {
+			document.body.style.overflow = "auto";
+		};
+	}, [isMenuOpen]);
 
 	return (
 		<nav
@@ -17,16 +37,16 @@ const Header = () => {
 			<div className="max-w-7xl mx-auto px-6 lg:px-8">
 				<div className="flex justify-between items-center h-16">
 					<div className="flex items-center">
-						<div className="text-2xl font-bold tracking-tight logo-glow cursor-pointer">
-							<span className="text-white">SMK</span>
-							<span className="text-orange-500 ml-1">Bisa</span>
-						</div>
-						<div className="hidden sm:block ml-3 h-6 w-px bg-orange-500/30"></div>
-						<span className="hidden sm:block ml-3 text-sm text-gray-400 font-medium">
-							Digital Education
-						</span>
+						<a href="/" className="flex items-center">
+							<img src={logo} alt="SMK Bisa Logo" className="h-10 mr-2" />
+							<div className="hidden sm:block h-6 w-px bg-orange-500/30"></div>
+							<span className="hidden sm:block ml-3 text-sm text-gray-400 font-medium">
+								Digital Education
+							</span>
+						</a>
 					</div>
 
+					{/* Desktop Menu */}
 					<div className="hidden md:flex items-center space-x-1">
 						{[
 							"Beranda",
@@ -59,36 +79,31 @@ const Header = () => {
 						</a>
 					</div>
 
+					{/* Mobile Menu Toggle Button */}
 					<button
-						className="md:hidden relative w-10 h-10 flex items-center justify-center text-white hover:text-orange-500 transition-colors duration-200"
+						className="md:hidden relative w-10 h-10 flex items-center justify-center text-white hover:text-orange-500 transition-colors duration-200 z-50"
 						onClick={() => setIsMenuOpen(!isMenuOpen)}
 					>
-						<div className="relative w-6 h-6">
-							<span
-								className={`absolute top-0 left-0 w-full h-0.5 bg-current transform transition-all duration-300 ${
-									isMenuOpen ? "rotate-45 translate-y-2.5" : ""
-								}`}
-							></span>
-							<span
-								className={`absolute top-2.5 left-0 w-full h-0.5 bg-current transition-all duration-300 ${
-									isMenuOpen ? "opacity-0" : ""
-								}`}
-							></span>
-							<span
-								className={`absolute top-5 left-0 w-full h-0.5 bg-current transform transition-all duration-300 ${
-									isMenuOpen ? "-rotate-45 -translate-y-2.5" : ""
-								}`}
-							></span>
-						</div>
+						{isMenuOpen ? (
+							<X className="w-6 h-6 transition-transform duration-300" />
+						) : (
+							<Menu className="w-6 h-6 transition-transform duration-300" />
+						)}
 					</button>
 				</div>
+			</div>
 
-				<div
-					className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-						isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-					}`}
-				>
-					<div className="py-4 space-y-1 border-t border-orange-500/10">
+			{/* Mobile Menu */}
+			<div
+				className={`md:hidden absolute top-16 w-full transition-all duration-300 ease-in-out z-40 ${
+					isMenuOpen
+						? "opacity-100 translate-y-0 visible"
+						: "opacity-0 -translate-y-full invisible"
+				}`}
+			>
+				{/* Changed mobile menu background to a more visible gray */}
+				<div className="bg-gray-900/95 backdrop-blur-lg border-b border-orange-500/50 shadow-xl shadow-orange-500/20 py-6">
+					<div className="px-6 space-y-2">
 						{[
 							"Beranda",
 							"Tentang",
@@ -100,27 +115,24 @@ const Header = () => {
 							<a
 								key={item}
 								href={`#${item.toLowerCase()}`}
-								className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-orange-500/10 rounded-lg mx-2 transition-all duration-200 transform hover:translate-x-1"
+								className="block px-4 py-3 text-lg font-medium text-gray-300 hover:text-white hover:bg-orange-500/10 rounded-lg transition-all duration-300 transform"
 								onClick={() => setIsMenuOpen(false)}
-								style={{ animationDelay: `${index * 50}ms` }}
+								style={{ transitionDelay: `${index * 50}ms` }}
 							>
-								<span className="flex items-center">
-									<span className="w-1 h-1 bg-orange-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
-									{item}
-								</span>
+								{item}
 							</a>
 						))}
-						<div className="px-2 pt-4">
-							<a
-								href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20program%20SMK%20Bisa"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="block w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-center px-4 py-3 rounded-lg font-semibold transition-all duration-300"
-								onClick={() => setIsMenuOpen(false)}
-							>
-								Daftar Sekarang
-							</a>
-						</div>
+					</div>
+					<div className="px-6 pt-6">
+						<a
+							href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20program%20SMK%20Bisa"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="block w-full text-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-3 rounded-lg font-semibold transition-all duration-300"
+							onClick={() => setIsMenuOpen(false)}
+						>
+							Daftar Sekarang
+						</a>
 					</div>
 				</div>
 			</div>

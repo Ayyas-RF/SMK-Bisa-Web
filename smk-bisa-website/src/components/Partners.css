@@ -1,0 +1,28 @@
+.marquee-container {
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 30s linear infinite; /* Changed to 30s for a standard pace */
+}
+
+.partner-card {
+  flex-shrink: 0;
+  margin: 0 1rem;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}

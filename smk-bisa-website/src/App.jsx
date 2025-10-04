@@ -49,7 +49,6 @@ const App = () => {
 		<>
 			<div>
 				<Header />
-				<main>
 					<Hero />
 					<About />
 					<Programs />
@@ -57,7 +56,6 @@ const App = () => {
 					<Testimonials />
 					<Faq />
 					<CallToAction />
-				</main>
 				<Footer />
 			</div>
 		</>
