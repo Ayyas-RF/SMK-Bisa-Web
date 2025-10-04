@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Star } from 'lucide-react';
-import { testimonials } from '../data/websiteData';
+import React, { useState, useEffect } from "react";
+import { Star } from "lucide-react";
+import { testimonials } from "../data/websiteData";
 
 const Testimonials = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+      setActiveTestimonial(prev => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -33,7 +33,9 @@ const Testimonials = () => {
                   // The active testimonial is visible, others are hidden but still occupy space in a layer.
                   // The transition makes the change smooth.
                   className={`transition-opacity duration-700 ease-in-out ${
-                    activeTestimonial === index ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 w-full'
+                    activeTestimonial === index
+                      ? "opacity-100"
+                      : "opacity-0 absolute top-0 left-0 w-full"
                   }`}
                 >
                   {/* We only render the content if it's the active testimonial to avoid invisible elements from being interactive */}
@@ -52,7 +54,7 @@ const Testimonials = () => {
                       <p className="text-xl text-gray-300 mb-6 italic">
                         "{testimonial.text}"
                       </p>
-                      
+
                       <div className="flex items-center">
                         <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mr-4">
                           <span className="text-white font-bold">
@@ -60,7 +62,9 @@ const Testimonials = () => {
                           </span>
                         </div>
                         <div>
-                          <h4 className="font-bold text-white">{testimonial.name}</h4>
+                          <h4 className="font-bold text-white">
+                            {testimonial.name}
+                          </h4>
                           <p className="text-gray-400">{testimonial.role}</p>
                         </div>
                       </div>
@@ -77,15 +81,26 @@ const Testimonials = () => {
                 key={index}
                 onClick={() => setActiveTestimonial(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 hover-scale ${
-                  activeTestimonial === index ? 'bg-orange-500' : 'bg-gray-600 hover:bg-gray-500'
+                  activeTestimonial === index
+                    ? "bg-orange-500"
+                    : "bg-gray-600 hover:bg-gray-500"
                 }`}
               />
             ))}
           </div>
         </div>
 
-        <div className="text-center mt-8" data-aos="fade-up" data-aos-delay="400">
-          <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20untuk%20bergabung%20dengan%20SMK%20Bisa" target="_blank" rel="noopener noreferrer" className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 hover-lift hover-glow inline-block">
+        <div
+          className="text-center mt-8"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          <a
+            href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20untuk%20bergabung%20dengan%20SMK%20Bisa"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 hover-lift hover-glow inline-block"
+          >
             Gabung Sekarang
           </a>
         </div>

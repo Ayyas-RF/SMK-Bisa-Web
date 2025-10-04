@@ -12,54 +12,54 @@ import Footer from "./components/Footer";
 // Try to import AOS, fallback to null if not available
 let AOS = null;
 try {
-	AOS = require("aos");
-	require("aos/dist/aos.css");
+  AOS = require("aos");
+  require("aos/dist/aos.css");
 } catch (error) {
-	console.log("AOS not available, using fallback animations");
+  console.log("AOS not available, using fallback animations");
 }
 
 const App = () => {
-	// Initialize AOS with fallback
-	useEffect(() => {
-		if (AOS) {
-			AOS.init({
-				duration: 1000,
-				easing: "ease-out-cubic",
-				once: true,
-				offset: 100,
-				delay: 0,
-				anchorPlacement: "top-bottom",
-				disable: false,
-				startEvent: "DOMContentLoaded",
-				initClassName: "aos-init",
-				animatedClassName: "aos-animate",
-				useClassNames: false,
-				disableMutationObserver: false,
-				debounceDelay: 50,
-				throttleDelay: 99
-			});
+  // Initialize AOS with fallback
+  useEffect(() => {
+    if (AOS) {
+      AOS.init({
+        duration: 1000,
+        easing: "ease-out-cubic",
+        once: true,
+        offset: 100,
+        delay: 0,
+        anchorPlacement: "top-bottom",
+        disable: false,
+        startEvent: "DOMContentLoaded",
+        initClassName: "aos-init",
+        animatedClassName: "aos-animate",
+        useClassNames: false,
+        disableMutationObserver: false,
+        debounceDelay: 50,
+        throttleDelay: 99
+      });
 
-			AOS.refresh();
-		} else {
-			document.body.classList.add("aos-fallback");
-		}
-	}, []);
+      AOS.refresh();
+    } else {
+      document.body.classList.add("aos-fallback");
+    }
+  }, []);
 
-	return (
-		<>
-			<div>
-				<Header />
-					<Hero />
-					<About />
-					<Programs />
-					<Partners />
-					<Testimonials />
-					<Faq />
-					<CallToAction />
-				<Footer />
-			</div>
-		</>
-	);
+  return (
+    <>
+      <div>
+        <Header />
+        <Hero />
+        <About />
+        <Programs />
+        <Partners />
+        <Testimonials />
+        <Faq />
+        <CallToAction />
+        <Footer />
+      </div>
+    </>
+  );
 };
 
 export default App;

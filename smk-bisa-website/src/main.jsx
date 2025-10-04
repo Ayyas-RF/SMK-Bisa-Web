@@ -7,7 +7,7 @@ import App from "./App.jsx";
 document.documentElement.classList.add("js-enabled");
 
 createRoot(document.getElementById("root")).render(
-	<StrictMode>
-		<App />
-	</StrictMode>
+  <StrictMode>
+    <App />
+  </StrictMode>
 );

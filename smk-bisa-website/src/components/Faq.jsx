@@ -1,5 +1,5 @@
-import React from 'react';
-import { faqs } from '../data/websiteData';
+import React from "react";
+import { faqs } from "../data/websiteData";
 
 const Faq = () => {
   return (
@@ -13,13 +13,15 @@ const Faq = () => {
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div 
-              key={index} 
-              className="bg-black p-6 rounded-lg border border-orange-500/20 hover-lift" 
+            <div
+              key={index}
+              className="bg-black p-6 rounded-lg border border-orange-500/20 hover-lift"
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              <h3 className="text-xl font-bold mb-3 text-orange-500 hover-scale">{faq.question}</h3>
+              <h3 className="text-xl font-bold mb-3 text-orange-500 hover-scale">
+                {faq.question}
+              </h3>
               <p className="text-gray-300">{faq.answer}</p>
             </div>
           ))}
